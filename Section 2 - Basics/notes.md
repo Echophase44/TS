@@ -11,3 +11,12 @@
 - Tuple: [number, string]
 - Enum: enum {NEW, OLD} // Automatically enumerated global conststant identifiers
 - Any
+
+- Union: input1: string | number
+- Literal
+
+- Function
+- Void
+
+- Unknown
+- Never
