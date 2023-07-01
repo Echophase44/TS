@@ -31,15 +31,7 @@ accounting.describe();
 // accountingCopy.describe()
 
 
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // CONSTRUCTOR SHORTHAND
@@ -48,7 +40,7 @@ class Kingdom {
   // public name: string;
   // private queen: string;
 
-  constructor(public name: string, private queen: string) { // This is shorthand for the double initialization you see. You have to specify the "public" though.
+  constructor(public readonly name: string, private queen: string) { // This is shorthand for the double initialization you see. You have to specify the "public" though.
     // this.name = name;
     // this.queen = queen;
   }
@@ -62,3 +54,25 @@ class Kingdom {
 const black = new Kingdom("Black Death", "Lilith")
 
 black.announceKingdom();
+
+// readonly is another property that can add some extra type saftey. 
+
+
+/////////////////////////////INHERITANCE///////////////////////////////////////////
+
+class Region extends Kingdom {
+  private soldiers: string[];
+
+  constructor(id: string, queen: string, soldiers: string[]) {
+    super(id, queen); //calls the constructor of the base class to pass those into - also has to be called first before the new ones
+    this.soldiers = soldiers
+  }
+
+  printSoldiers(){
+    console.log(this.soldiers)
+  }
+}
+
+const Ravnica = new Region("Red", "Auelia", ["Lt. Herion", "Cpt. Florian"])
+
+Ravnica.printSoldiers()
