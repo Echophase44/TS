@@ -1,78 +1,39 @@
-class  Department {
+interface Fighter {
+  name: string; //Interface can have the properties, but not the values
+  readonly age: number; //Readonly is the only keyword you can use in interfaces, "set it once and then you cant change it."
+
+  defaultAttack(damage: number):number ;
+}
+
+let fighter1: Fighter;
+
+
+// Based on the blueprint above, it will give errors if it doesn't have everything.
+fighter1 = {
+  name: "Vilago",
+  age: 27,
+
+  defaultAttack(damage: number){
+    return damage
+  }
+}
+
+//////////////////////////CLASSES + INTERFACE /////////////////////
+// Has to have all the same conditions as Figther, plus you can add what you want. 
+class Captian implements Fighter {
   name: string;
-  private employees: string[] = []
+  age: number;
 
-  constructor(n: string) {
-    this.name = n
+  constructor(n: string, age: number){
+      this.name = n
+      this.age = age
   }
 
-  describe(this: Department){ //this: Department is an extra type saftey incase other variables try to call the "describe" method
-    console.log("Department: " + this.name)
-  }
-
-  addEmployee(employee: string) {
-    this.employees.push(employee)
-  }
-
-  printEmployeeInformation() {
-    console.log(this.employees.length)
-    console.log(this.employees)
+  defaultAttack(damage: number): number {
+    return damage
   }
 }
 
-const accounting = new Department("Accounting");
+//class Captian implements Fighter, Sorcerer, etc. //if you want to mulitple 
 
-accounting.describe();
-
-
-// This is referring to the "this: Department" special type above. Without the "this: Department", the accountingCopy will return "undefined" or give a type error.
-// const accountingCopy = {name: "Dummy", describe: accounting.describe}
-
-// accountingCopy.describe()
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// CONSTRUCTOR SHORTHAND
-
-class Kingdom {
-  // public name: string;
-  // private queen: string;
-
-  constructor(public readonly name: string, private queen: string) { // This is shorthand for the double initialization you see. You have to specify the "public" though.
-    // this.name = name;
-    // this.queen = queen;
-  }
-
-  announceKingdom() {
-    console.log("My Kingdom: " + this.name)
-    console.log(`My Queen: ${this.queen}`)
-  }
-}
-
-const black = new Kingdom("Black Death", "Lilith")
-
-black.announceKingdom();
-
-// readonly is another property that can add some extra type saftey. 
-
-
-/////////////////////////////INHERITANCE///////////////////////////////////////////
-
-class Region extends Kingdom {
-  private soldiers: string[];
-
-  constructor(id: string, queen: string, soldiers: string[]) {
-    super(id, queen); //calls the constructor of the base class to pass those into - also has to be called first before the new ones
-    this.soldiers = soldiers
-  }
-
-  printSoldiers(){
-    console.log(this.soldiers)
-  }
-}
-
-const Ravnica = new Region("Red", "Auelia", ["Lt. Herion", "Cpt. Florian"])
-
-Ravnica.printSoldiers()
+//you can also extent mulitple interfaces 
