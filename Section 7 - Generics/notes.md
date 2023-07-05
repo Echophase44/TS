@@ -1,1 +1,3 @@
 ## Generics
+
+- Generic types
